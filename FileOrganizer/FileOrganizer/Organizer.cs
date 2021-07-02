@@ -23,10 +23,10 @@ namespace FileOrganizer
                             if (group.Count() > 2)
                             {
                                 var groupedFilesFolder = $"Файлы с расширением {group.Key}";
-                                var newDirectory = Directory.CreateDirectory(groupedFilesFolder);
+                                var newDirectory = Directory.CreateDirectory(Path.Combine(folderPath, groupedFilesFolder));
                                 foreach (var file in group)
                                 {
-                                    Directory.Move(file.FullName, $"{newDirectory.FullName}/{file.Name}");
+                                    Directory.Move(file.FullName, Path.Combine(newDirectory.FullName, file.Name));
                                 }
                             }
                         }
@@ -40,7 +40,7 @@ namespace FileOrganizer
                             if (group.Count() > 2)
                             {
                                 var groupedFilesFolder = $"Файлы за день {group.Key}";
-                                var newDirectory = Directory.CreateDirectory(groupedFilesFolder);
+                                var newDirectory = Directory.CreateDirectory(Path.Combine(folderPath, groupedFilesFolder));
                                 foreach (var file in group)
                                 {
                                     Directory.Move(file.FullName, $"{newDirectory.FullName}/{file.Name}");
